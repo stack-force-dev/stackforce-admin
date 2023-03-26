@@ -24,6 +24,9 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 DEBUG = bool(int(os.environ.get("DEBUG", default=1)))
 ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS").split(" ")
 
+STATIC_PATH = os.environ.get('STATIC_PATH')
+CLAIM_FILES_BASE_URL = os.environ.get('CLAIM_FILES_BASE_URL')
+
 # Application definition
 
 INSTALLED_APPS = [
