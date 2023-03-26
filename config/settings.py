@@ -26,6 +26,7 @@ ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS").split(" ")
 
 STATIC_PATH = os.environ.get('STATIC_PATH')
 CLAIM_FILES_BASE_URL = os.environ.get('CLAIM_FILES_BASE_URL')
+CSRF_TRUSTED_ORIGINS = os.environ.get('CSRF_TRUSTED_ORIGINS')
 
 # Application definition
 
