@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "django-admin-template"
+version = "1"
+description = "Simple starter admin template powered by Django"
+authors = ["alexeykudimov <work.alexeykudimov@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+packages = []
+
+[tool.poetry.dependencies]
+python = "^3.10"
+django = "^4.1.7"
+django-admin-interface = "^0.24.2"
+psycopg2-binary = "^2.9.5"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
