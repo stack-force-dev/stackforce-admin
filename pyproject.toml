@@ -1,7 +1,7 @@
 [tool.poetry]
-name = "django-admin-template"
-version = "1"
-description = "Simple starter admin template powered by Django"
+name = "stackforce-admin"
+version = "0.1"
+description = "Administration panel for StackForce"
 authors = ["alexeykudimov <work.alexeykudimov@gmail.com>"]
 license = "MIT"
 readme = "README.md"
