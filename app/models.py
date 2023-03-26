@@ -4,6 +4,7 @@ from django.db import models
 from django.conf import settings
 from django.contrib import admin
 from django.utils.html import format_html
+from django.utils.translation import gettext_lazy as _
 
 def link_maker(href: str, name: str):
     return format_html(
@@ -12,14 +13,38 @@ def link_maker(href: str, name: str):
 
 
 class Claim(models.Model):
+
+    class Type(models.TextChoices):
+        ECOMMERCE = '1', _('Электронная коммерция')
+        CUSTOMER = '2', _('Обслуживание клиентов')
+        INTRANET = '3', _('Интранет-портал')
+        OTHER = '4', _('Другой')
+
+
+    class IsAdaptive(models.TextChoices):
+        NO = '1', _('Только десктопная версия')
+        YES = '2', _('Сайт с мобильной и планшетной версиями')
+
+
+    class State(models.TextChoices):
+        NEW = '1', _('Новый проект')
+        EXISTED = '2', _('Существующий проект')
+
+
+    class StartDate(models.TextChoices):
+        NOW = '1', _('Как можно скорее')
+        TWO_WEEKS = '2', _('В течение пару недель')
+        TWO_MONTHS = '3', _('В течение пару месяцев')
+
+
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     email = models.CharField(max_length=255, null=True, blank=True)
     phone = models.CharField(max_length=255, null=True, blank=True)
     message = models.TextField(null=True, blank=True)
-    type = models.TextField(null=True, blank=True)
-    is_adaptive = models.BooleanField(default=False, null=True, blank=True)
-    state = models.TextField(null=True, blank=True)
-    start_date = models.TextField(null=True, blank=True)
+    type = models.CharField(choices=Type.choices, default=Type.OTHER, max_length=3, null=True, blank=True)
+    is_adaptive = models.CharField(choices=IsAdaptive.choices, default=IsAdaptive.NO, max_length=3, null=True, blank=True)
+    state = models.CharField(choices=State.choices, default=State.NEW, max_length=3, null=True, blank=True)
+    start_date = models.CharField(choices=StartDate.choices, default=StartDate.NOW, max_length=3, null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
